@@ -2,7 +2,11 @@
 
 AI Interview Prep is an AI-powered web application designed to help students and job seekers prepare for technical interviews through interactive AI conversations and mock interviews.
 
-## 🚀 Features
+## 🚀 Live Demo
+
+👉 [AI Interview Prep - Live Demo](https://ai-interview-prep-xe2y.onrender.com)
+
+## ✨ Features
 
 - 💬 AI-powered normal chat
 - 🎯 Mock technical interviews
