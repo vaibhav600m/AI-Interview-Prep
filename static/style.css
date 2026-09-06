@@ -1,0 +1,803 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+}
+
+.chat-container {
+    width: 700px;
+    max-width: 90%;
+    margin: 50px auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+.chat-box {
+    height: 500px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.message {
+    padding: 12px 15px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    max-width: 75%;
+}
+
+.ai {
+    background: #eeeeee;
+}
+
+.user {
+    background: #222;
+    color: white;
+    margin-left: auto;
+}
+
+.input-area {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+input {
+    flex: 1;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+button {
+    padding: 14px 22px;
+    border: none;
+    border-radius: 8px;
+    background: #222;
+    color: white;
+    cursor: pointer;
+}
+
+.ai pre {
+    background: #1e1e1e;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+.ai code {
+    font-family: monospace;
+}
+
+.ai p {
+    line-height: 1.6;
+}
+
+.ai ul,
+.ai ol {
+    line-height: 1.7;
+}
+
+.ai table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+.ai th,
+.ai td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.ai th {
+    background: #f0f0f0;
+}
+
+#micBtn {
+    padding: 14px 16px;
+    font-size: 18px;
+}
+
+/* =========================
+   VOICE STATUS
+========================= */
+
+.voice-status {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    background: #e53935;
+    border-radius: 50%;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* =========================
+   LIVE TRANSCRIPT
+========================= */
+
+.live-transcript {
+    display: none;
+    margin-top: 10px;
+    padding: 12px 15px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    color: #555;
+    font-size: 15px;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+#stopBtn {
+    padding: 6px 12px;
+    font-size: 13px;
+    background: #d32f2f;
+    color: white;
+    border-radius: 6px;
+}
+
+#stopBtn:hover {
+    background: #b71c1c;
+}
+
+/* =========================
+   AI SPEAKING STATUS
+========================= */
+
+.speaking-status {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.speaking-icon {
+    font-size: 18px;
+}
+
+#stopSpeakingBtn {
+    padding: 6px 12px;
+    font-size: 13px;
+    background: #555;
+    color: white;
+    border-radius: 6px;
+}
+
+#stopSpeakingBtn:hover {
+    background: #333;
+}
+
+/* =========================
+   VOICE SPEED
+========================= */
+
+.voice-speed {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+    font-size: 14px;
+}
+
+.voice-speed span {
+    font-weight: bold;
+    margin-right: 4px;
+}
+
+.speed-btn {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: white;
+    color: #222;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.speed-btn:hover {
+    background: #eee;
+}
+
+.speed-btn.active {
+    background: #222;
+    color: white;
+    border-color: #222;
+}
+
+.voice-speed {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+    font-size: 14px;
+}
+
+/* =========================
+   INTERVIEW EVALUATION
+========================= */
+
+.interview-evaluation {
+    margin-top: 30px;
+    padding: 28px;
+    border-radius: 20px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================
+   EVALUATION HEADER
+========================= */
+
+.evaluation-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.evaluation-header h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.evaluation-header p {
+    margin: 8px 0 0;
+    color: #6b7280;
+    font-size: 15px;
+}
+
+
+/* =========================
+   OVERALL SCORE
+========================= */
+
+.overall-score-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+
+    padding: 25px;
+    margin-bottom: 28px;
+
+    border-radius: 18px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+}
+
+.overall-score {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+
+    min-width: 120px;
+
+    font-size: 48px;
+    font-weight: 700;
+}
+
+/* =========================
+   CIRCULAR OVERALL SCORE
+========================= */
+
+.score-circle {
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: conic-gradient(#222 0deg,
+            #222 0deg,
+            #e5e7eb 0deg,
+            #e5e7eb 360deg);
+}
+
+.score-circle-inner {
+    width: 94px;
+    height: 94px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+
+    padding-top: 28px;
+}
+
+.score-circle-inner #overallScore {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.score-circle-inner small {
+    font-size: 16px;
+    color: #6b7280;
+    margin-left: 2px;
+}
+
+.overall-score small {
+    margin-left: 4px;
+    font-size: 20px;
+    color: #6b7280;
+}
+
+.overall-score-card h3 {
+    margin: 0 0 6px;
+    font-size: 21px;
+}
+
+.overall-score-card p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+/* =========================
+   SCORE GRID
+========================= */
+
+.score-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.score-card {
+    padding: 20px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+
+    background: #ffffff;
+
+    transition: transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.score-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+}
+
+.score-card h3 {
+    margin: 0 0 14px;
+    font-size: 16px;
+    color: #374151;
+}
+
+.score-card strong {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+/* =========================
+   SCORE PROGRESS BAR
+========================= */
+
+.score-progress {
+    width: 100%;
+    height: 8px;
+    margin-top: 12px;
+
+    background: #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.score-progress-bar {
+    width: 0%;
+    height: 100%;
+
+    background: #222;
+    border-radius: 10px;
+
+    transition: width 0.6s ease;
+}
+
+
+/* =========================
+   EVALUATION SECTIONS
+========================= */
+
+.evaluation-section {
+    margin-top: 20px;
+    padding: 20px;
+
+    border-radius: 16px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+}
+
+.evaluation-section h3 {
+    margin: 0 0 14px;
+    font-size: 18px;
+}
+
+.evaluation-section ul {
+    margin: 0;
+    padding-left: 22px;
+}
+
+.evaluation-section li {
+    margin-bottom: 9px;
+    line-height: 1.6;
+    color: #374151;
+}
+
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 0;
+    }
+
+    .chat-container {
+        width: 100%;
+        max-width: 100%;
+        margin: 20px auto;
+        padding: 0 12px;
+    }
+
+    h1 {
+        font-size: 28px;
+        margin: 15px 0 20px;
+    }
+
+    .close-evaluation-btn {
+        top: 10px;
+        left: 10px;
+
+        width: 30px;
+        height: 30px;
+
+        font-size: 16px;
+    }
+
+    /* =========================
+       QUESTION COUNTER
+    ========================= */
+
+    .question-counter {
+        margin: 10px 0;
+        padding: 9px 10px;
+        font-size: 13px;
+    }
+
+    .interview-label {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 3px;
+    }
+
+
+    /* =========================
+       INTERVIEW BUTTONS
+    ========================= */
+
+    .interview-controls {
+        display: flex;
+        width: 100%;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    .interview-controls button {
+        flex: 1;
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+
+
+    /* =========================
+       CHAT BOX
+    ========================= */
+
+    .chat-box {
+        height: 450px;
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+    .message {
+        max-width: 90%;
+        padding: 10px 12px;
+        font-size: 15px;
+    }
+
+
+    /* =========================
+       INPUT AREA
+    ========================= */
+
+    .input-area {
+        display: flex;
+        gap: 6px;
+        width: 100%;
+    }
+
+    .input-area input {
+        min-width: 0;
+        width: 100%;
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .input-area button {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+    #micBtn {
+        padding: 12px;
+        font-size: 17px;
+    }
+
+
+    /* =========================
+       VOICE SPEED
+    ========================= */
+
+    .voice-speed {
+        gap: 5px;
+    }
+
+    .speed-btn {
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+
+
+    /* =========================
+       LIVE TRANSCRIPT
+    ========================= */
+
+    .live-transcript {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+
+
+    /* =========================
+       INTERVIEW EVALUATION
+    ========================= */
+
+    .interview-evaluation {
+        padding: 18px;
+        margin-top: 20px;
+        border-radius: 16px;
+    }
+
+    .evaluation-header {
+        margin-bottom: 20px;
+    }
+
+    .evaluation-header h2 {
+        font-size: 22px;
+    }
+
+    .evaluation-header p {
+        font-size: 14px;
+    }
+
+    .score-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .overall-score-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        padding: 20px;
+    }
+
+    .overall-score {
+        font-size: 40px;
+    }
+
+    .overall-score-card h3 {
+        font-size: 19px;
+    }
+
+    .score-card {
+        padding: 16px;
+    }
+
+    .score-card strong {
+        font-size: 25px;
+    }
+
+    .evaluation-section {
+        padding: 15px;
+    }
+
+    .evaluation-section h3 {
+        font-size: 17px;
+    }
+
+}
+
+/* =========================
+   CLOSE SCORECARD BUTTON
+========================= */
+
+.interview-evaluation {
+    position: relative;
+}
+
+.close-evaluation-btn {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+
+    width: 32px;
+    height: 32px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f1f1f1;
+    color: #333;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-evaluation-btn:hover {
+    background: #e5e5e5;
+}
+
+/* =========================
+   INTERVIEW QUESTION COUNTER
+========================= */
+
+.question-counter {
+    display: none;
+    margin: 12px 0;
+    padding: 10px 14px;
+
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+}
+
+.interview-label {
+    font-weight: bold;
+    color: #222;
+    margin-right: 8px;
+}
+
+.question-counter strong {
+    color: #222;
+}
+
+/* =========================
+   SCORE PROGRESS BAR
+========================= */
+
+.score-progress {
+    width: 100%;
+    height: 8px;
+    margin-top: 12px;
+
+    background: #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.score-progress-bar {
+    width: 0%;
+    height: 100%;
+
+    background: #222;
+    border-radius: 10px;
+
+    transition: width 0.8s ease;
+}
+
+/* =========================
+   CLOSE SCORECARD BUTTON
+========================= */
+
+.interview-evaluation {
+    position: relative;
+}
+
+.close-evaluation-btn {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+
+    width: 34px;
+    height: 34px;
+
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 50%;
+
+    background: white;
+    color: #555;
+
+    font-size: 18px;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.close-evaluation-btn:hover {
+    background: #f1f1f1;
+    color: #222;
+    transform: scale(1.05);
+}
