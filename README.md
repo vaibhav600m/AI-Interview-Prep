@@ -33,6 +33,19 @@ AI Interview Prep is an AI-powered web application designed to help students and
 - 🔄 Fresh interview session with cleared previous interview memory
 - 📱 Responsive user interface
 
+
+## 🎯 Key Highlights
+
+- Built an AI-powered platform for technical interview preparation.
+- Implemented a dedicated mock interview mode with contextual conversation history.
+- Designed a 20-question structured technical interview flow.
+- Added automated AI-based evaluation with multi-dimensional scoring.
+- Implemented voice interaction using browser Speech APIs.
+- Separated frontend and backend for independent deployment.
+- Deployed the frontend on Vercel and Flask backend on Render.
+- Implemented CORS to enable secure communication between the deployed frontend and backend.
+
+
 ## 🛠️ Technologies Used
 
 ### Frontend
