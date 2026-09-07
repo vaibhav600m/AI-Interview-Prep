@@ -486,7 +486,7 @@ async function generateInterviewEvaluation() {
     try {
 
         const response = await fetch(
-            "/api/interview/evaluate",
+            "https://ai-interview-prep-xe2y.onrender.com/api/interview/evaluate",
             {
                 method: "POST",
 
@@ -780,7 +780,7 @@ async function sendQuestion(isVoice = false) {
 
         const response =
             await fetch(
-                "/api/chat",
+                "https://ai-interview-prep-xe2y.onrender.com/api/chat",
                 {
 
                     method: "POST",
