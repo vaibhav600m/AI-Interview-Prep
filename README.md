@@ -4,7 +4,11 @@ AI Interview Prep is an AI-powered web application designed to help students and
 
 ## 🚀 Live Demo
 
-👉 [AI Interview Prep - Live Demo](https://ai-interview-prep-xe2y.onrender.com)
+# AI Interview Prep
+
+🚀 **Live Demo:** https://ai-interview-prep-liart.vercel.app/
+
+🔗 **Backend:** https://ai-interview-prep-xe2y.onrender.com
 
 ## ✨ Features
 
