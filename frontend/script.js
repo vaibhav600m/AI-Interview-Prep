@@ -1017,20 +1017,15 @@ async function sendQuestion(isVoice = false) {
 
                         const clearResponse =
                             await fetch(
-                                "/api/chat",
+                                "https://ai-interview-prep-xe2y.onrender.com/api/chat",
                                 {
-
                                     method: "POST",
-
                                     headers: {
-                                        "Content-Type":
-                                            "application/json"
+                                        "Content-Type": "application/json"
                                     },
-
                                     body: JSON.stringify({
                                         endInterview: true
                                     })
-
                                 }
                             );
 
@@ -1689,7 +1684,7 @@ startInterviewBtn.addEventListener(
 
             const resetResponse =
                 await fetch(
-                    "/api/chat",
+                    "https://ai-interview-prep-xe2y.onrender.com/api/chat",
                     {
                         method: "POST",
 
@@ -1749,7 +1744,7 @@ startInterviewBtn.addEventListener(
 
             const response =
                 await fetch(
-                    "/api/chat",
+                    "https://ai-interview-prep-xe2y.onrender.com/api/chat",
                     {
                         method: "POST",
 
@@ -1939,7 +1934,7 @@ endInterviewBtn.addEventListener(
 
             const response =
                 await fetch(
-                    "/api/chat",
+                    "https://ai-interview-prep-xe2y.onrender.com/api/chat",
                     {
                         method: "POST",
 
