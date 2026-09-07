@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Interview Prep</title>
+
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="./script.js"></script>
+</head>
+
+<body>
+
+    <div class="chat-container">
+
+        <h1>AI Interview Prep 🤖</h1>
+        <div class="interview-controls">
+
+            <button id="startInterviewBtn" type="button">
+                🎯 Start Mock Interview
+            </button>
+
+            <button id="endInterviewBtn" type="button" style="display: none;">
+                ⏹ End Interview
+            </button>
+
+        </div>
+        <div id="questionCounter" class="question-counter" style="display: none;">
+
+            <span class="interview-label">
+                🎯 Mock Interview
+            </span>
+
+            <span>
+                Question <strong id="currentQuestion">1</strong> of 20
+            </span>
+
+        </div>
+
+        <div id="chatBox" class="chat-box">
+            <div class="message ai">
+                Hello! Ask me anything about technical interviews.
+            </div>
+        </div>
+        <!-- =========================
+     INTERVIEW SCORECARD
+========================= -->
+
+        <div id="interviewEvaluation" class="interview-evaluation" style="display: none;">
+
+
+            <button id="closeEvaluationBtn" class="close-evaluation-btn" type="button" title="Close scorecard">
+                ✕
+            </button>
+
+
+
+
+            <div class="evaluation-header">
+                <h2>📊 Interview Evaluation</h2>
+                <p>Your mock interview performance</p>
+            </div>
+
+
+            <!-- Overall Score -->
+
+            <div class="overall-score-card">
+
+                <div class="overall-score">
+
+                    <div class="score-circle">
+
+                        <div class="score-circle-inner">
+
+                            <span id="overallScore">0</span>
+
+                            <small>/10</small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div>
+
+                    <h3 id="finalVerdict">
+                        Performance
+                    </h3>
+
+                    <p>
+                        Overall Interview Score
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Skill Scores -->
+
+            <div class="score-grid">
+
+                <!-- Technical Knowledge -->
+
+                <div class="score-card">
+
+                    <h3>💻 Technical Knowledge</h3>
+
+                    <strong>
+                        <span id="technicalScore">0</span>/10
+                    </strong>
+
+                    <div class="score-progress">
+                        <div id="technicalProgress" class="score-progress-bar">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Problem Solving -->
+
+                <div class="score-card">
+
+                    <h3>🧠 Problem Solving</h3>
+
+                    <strong>
+                        <span id="problemSolvingScore">0</span>/10
+                    </strong>
+
+                    <div class="score-progress">
+                        <div id="problemSolvingProgress" class="score-progress-bar">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Conceptual Understanding -->
+
+                <div class="score-card">
+
+                    <h3>📚 Conceptual Understanding</h3>
+
+                    <strong>
+                        <span id="conceptualScore">0</span>/10
+                    </strong>
+
+                    <div class="score-progress">
+                        <div id="conceptualProgress" class="score-progress-bar">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Communication -->
+
+                <div class="score-card">
+
+                    <h3>🗣️ Communication</h3>
+
+                    <strong>
+                        <span id="communicationScore">0</span>/10
+                    </strong>
+
+                    <div class="score-progress">
+                        <div id="communicationProgress" class="score-progress-bar">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Strengths -->
+
+            <div class="evaluation-section">
+
+                <h3>✅ Strengths</h3>
+
+                <ul id="strengthsList"></ul>
+
+            </div>
+
+
+            <!-- Weaknesses -->
+
+            <div class="evaluation-section">
+
+                <h3>❌ Weaknesses</h3>
+
+                <ul id="weaknessesList"></ul>
+
+            </div>
+
+
+            <!-- Topics -->
+
+            <div class="evaluation-section">
+
+                <h3>📚 Topics to Improve</h3>
+
+                <ul id="topicsList"></ul>
+
+            </div>
+
+
+            <!-- Recommendations -->
+
+            <div class="evaluation-section">
+
+                <h3>🎯 Recommendations</h3>
+
+                <ul id="recommendationsList"></ul>
+
+            </div>
+
+        </div>
+
+        <div class="voice-status" id="voiceStatus">
+
+            <span class="status-dot"></span>
+
+            <span id="statusText">
+                Listening...
+            </span>
+
+            <button id="stopBtn" type="button">
+                ⏹ Stop
+            </button>
+
+        </div>
+        <div class="speaking-status" id="speakingStatus">
+
+            <span class="speaking-icon">🔊</span>
+
+            <span id="speakingText">
+                AI is speaking...
+            </span>
+
+            <button id="stopSpeakingBtn" type="button">
+                ⏹ Stop
+            </button>
+
+        </div>
+
+        <div class="live-transcript" id="liveTranscript">
+            Your speech will appear here...
+        </div>
+        <div class="voice-speed">
+
+            <span>🔊 Speed:</span>
+
+            <button class="speed-btn" data-speed="0.75">
+                0.75x
+            </button>
+
+            <button class="speed-btn active" data-speed="1">
+                1x
+            </button>
+
+            <button class="speed-btn" data-speed="1.25">
+                1.25x
+            </button>
+
+            <button class="speed-btn" data-speed="1.5">
+                1.5x
+            </button>
+
+            <button class="speed-btn" data-speed="2">
+                2x
+            </button>
+
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="questionInput" placeholder="Ask your question...">
+
+            <button id="micBtn" type="button">🎤</button>
+
+            <button id="sendBtn" type="button">Send</button>
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
